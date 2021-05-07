@@ -1,0 +1,132 @@
+.cd-words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  font-size: 70px;
+}
+
+.cd-words-wrapper b {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  left: 0;
+  top: 0;
+}
+
+.blc {
+  font-size: 70px;
+}
+
+.cd-words-wrapper b.is-visible {
+  position: relative;
+}
+
+.cd-headline.clip span {
+  display: inline-block;
+  padding: .2em 0;
+}
+
+.cd-headline.clip .cd-words-wrapper {
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.cd-headline.clip b {
+  opacity: 0;
+}
+
+.cd-headline b.is-visible {
+  opacity: 1;
+  font-weight: 900;
+}
+
+#progressbar-skills {
+  background-color: white;
+}
+
+#workExperience-custom-item {
+  padding: 30px;
+}
+
+#span-date {
+  background: linear-gradient(120deg,#ffb800,#ff0f00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 300px) {
+  .caption.v-middle.text-center {
+    display: none;
+  }
+}
+
+.caption.v-middle.text-center {
+  /*display: block;*/
+}
+
+@media (min-width: 576px) {
+  .caption.v-middle.text-center {
+    display: block;
+  }
+}
+
+@media (min-width: 992px) {
+  #custom-container-heading {
+    background-image: url("../../assets/img/empty%20laptop_992.png");
+    background-position: fit;
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-block.block-intro p {
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-block.block-intro .about-me {
+    max-width: 700px;
+  }
+}
+
+.container.year-container {
+  background: #ff8239;
+  /*filter: brightness(80%);*/
+  margin-top: 10px;
+  padding: 50px;
+  /*display: inherit;*/
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 50px;
+}
+
+.text-center.year-title {
+  color: rgb(255,0,0);
+}
+
+#collapse_button {
+  width: 80%;
+  background: linear-gradient(120deg,#ffb800,#ff0f00);
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 5px #888888;
+}
+
+.col-md-12 {
+}
+
+#col-button-container {
+  text-align: center;
+}
+
+.features-boxed {
+  text-align: center;
+}
+
+.features-boxed {
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+.navbar.navbar-dark.navbar-expand-lg.fixed-top.bg-white.portfolio-navbar.gradient {
+}
+
