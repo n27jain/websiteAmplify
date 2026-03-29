@@ -1,187 +1,359 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Work</title>
-    <meta name="description" content=" Hello! My name is Naman Jain, and I am a kick-ass Computer
-Engineer.  Along with studying for my degree in Computer Engineering at the University of Waterloo, I write screenplays  and do some freelancing work in designing and hosting websites.">
-    <link rel="icon" type="image/png" sizes="200x200" href="assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="assets/css/News-Cards.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/Team-with-rotating-cards.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Experience — Naman Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================================================
+       EXPERIENCE PAGE STYLES
+    ============================================================ */
+
+    /* Timeline wrapper */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    /* Each job entry */
+    .job {
+      display: grid;
+      grid-template-columns: 180px 1px 1fr;
+      gap: 0 2.5rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .job:last-child { border-bottom: none; }
+
+    /* Left column: date + logo */
+    .job-meta { text-align: right; padding-top: .2rem; }
+    .job-date {
+      font-size: .75rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--ink-light);
+      display: block; margin-bottom: 1rem;
+    }
+    .job-logo {
+      width: 64px; height: 64px; border-radius: 8px;
+      border: 1px solid var(--border); overflow: hidden;
+      margin-left: auto; background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .job-logo img {
+      width: 52px !important; height: 52px !important;
+      max-width: 52px; max-height: 52px;
+      object-fit: contain;
+    }
+
+    /* Center: vertical rule */
+    .job-rule {
+      width: 1px; background: var(--border);
+      position: relative; margin: 0 auto;
+    }
+    .job-rule::before {
+      content: '';
+      position: absolute; top: .35rem; left: 50%;
+      transform: translateX(-50%);
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Right column: content */
+    .job-content {}
+    .job-role {
+      font-size: .72rem; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .35rem;
+    }
+    .job-company {
+      font-family: var(--font-display);
+      font-size: 1.45rem; margin-bottom: .75rem;
+    }
+    .job-company a { color: var(--ink); }
+    .job-company a:hover { color: var(--accent); text-decoration: none; }
+
+    .job-body { color: var(--ink-light); font-size: .95rem; }
+    .job-body p { margin-bottom: .75rem; }
+
+    .job-bullets {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: .45rem;
+      margin-top: .5rem;
+    }
+    .job-bullets li {
+      font-size: .9rem; color: var(--ink-light);
+      padding-left: 1.25rem; position: relative;
+    }
+    .job-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent); font-size: .8rem;
+    }
+    .job-bullets strong { color: var(--ink); font-weight: 500; }
+
+    .job-footer-note {
+      margin-top: 1rem;
+      font-size: .88rem; color: var(--ink-light);
+      font-style: italic;
+    }
+
+    @media (max-width: 680px) {
+      .job { grid-template-columns: 1fr; gap: .75rem; }
+      .job-meta { text-align: left; display: flex; align-items: center; gap: 1rem; }
+      .job-logo { margin-left: 0; }
+      .job-rule { display: none; }
+    }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="index.html" style="background: url(&quot;assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png&quot;);"><strong>NamanGineer</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="experience.html">Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                   <li class="nav-item"><a class="nav-link" href="photography.html">Photography</a></li>
-                   <li class="nav-item"><a class="nav-link" href="writing.html">Writing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-me.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main class="page cv-page">
-        <section class="portfolio-block cv">
-            <div class="container">
-                <div class="work-experience group">
-                    <div class="heading">
-                        <h2 class="text-center" style="border-radius: 25px;border-style: solid;border-color: #ff0f00;border-width: thick;color: #ff0f00;">Work Experience</h2>
-                    </div>
-                    <div class="border rounded shadow-lg item links" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>CircuitWare Inc.</h3>
-                                    <h4 id="custom-organization" class="organization"> Youth Coach</h4>
-                                
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">09/2023 - Present</span><span class="period"></span></div>
-                        </div><img src="assets/img/youthfully_logo.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 20%;/*height: 25%;*/padding-bottom: 10px;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">
-                            During my time in university, I saw an opportunity to combine my skills in both hardware and software to start a consultancy firm that helped clients turn their technical ideas into actual inventions. One of the first projects I took on was a smart light system that could automatically calibrate itself to its environment. This project taught me a lot—not just about embedded systems and design—but also about how the patent system works and how to help clients protect their intellectual property. As we gained traction, I also worked on improving solar power calibration tools using simulation software that was customized to each client’s specific needs. The experience taught me how to merge engineering with client-focused problem-solving, and how to manage the technical and legal aspects of invention development from start to finish.                        </p>
-                    </div>
-                    <div class="border rounded shadow-lg item links" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Youthfully</h3>
-                                    <h4 id="custom-organization" class="organization"> Youth Coach</h4>
-                                
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">10/2022 - Present</span><span class="period"></span></div>
-                        </div><img src="assets/img/youthfully_logo.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 20%;/*height: 25%;*/padding-bottom: 10px;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">
-                            I was requested to join this platform by Marina, the talent recruiter because of my background in engineering and previous teaching experience. Essentially I aim to teach my students how to better market themselves for college applications, specifically for engineering and law school applicants. I also offer services in interview preparations as well as coding training. <br>
-                        </p>
-                    </div>
 
-                    <div class="border rounded shadow-lg item links" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Business Owner</h3>
-                                    <h4 id="custom-organization" class="organization" >Value Smart Trading Inc</h4>
-                                
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">04/2020 - Present</span><span class="period"></span></div>
-                        </div><img src="assets/img/valuesmartlogo.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 20%;/*height: 25%;*/padding-bottom: 10px;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">
-                            Amidst the 2020 pandemic I was presented with the opportunity to start a new business. With my connections from the pharmacy businesses that I was a part of, I realized that there was a shortage of medical supplies such as masks and hand sanitizers. I found suppliers from India and China when asking around from my contacts in India. Then using those contacts, I imported the supplies in mass volumes. Since businesses around me noticed that my businesses were successful, they contacted me increasing my number of clients. In the last 2 years VSTI has made $1.21 million dollars in revenue and roughly $0.5 million in profit. This was an amazing opportunity presented to me and I am glad I took a shot at this venture. <br>
-                        </p>
-                    </div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Naman<span>Gineer</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html" class="active">Work</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-                    <div class="border rounded shadow-lg item links" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Autonomous Vehicle Android Developer (Embedded Systems)</h3><a href="https://www.ford.ca/">
-                                    <h4 id="custom-organization" class="organization" href="https://www.ford.ca/">Ford</h4>
-                                </a>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">09/2021 - 12/2021</span><span class="period"></span></div>
-                        </div><img src="assets/img/ford_logo.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 20%;/*height: 25%;*/padding-bottom: 10px;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">
-                            I worked at Ford's Autonomous Vehicles where I was assigned to work with the media & connectivity team. &nbsp;<br>
-                        </p>
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">
-                            -&nbsp;<strong>Implemented</strong>&nbsp;the optimal solution to display the visualized path finding  to the car’s display using the <strong>Android Open-Source Platform</strong>&nbsp;
-                            <br>-&nbsp;<strong>Implemented RTSP</strong>&nbsp;media stream to support &nbsp;<strong>RTP</strong>&nbsp;<strong></strong>&nbsp;with ethernet to provide a low latency, seamless video stream to the car’s display
-                            <br>-&nbsp;<strong>Researched </strong>&nbsp;the&nbsp;<strong>Android Graphics Architecture</strong> to design solutions for loss of video frames with VLC SDK
-                            <br>-&nbsp;<strong>Migrated</strong>&nbsp;and tested the new Embedded Systems chip to Android 11
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">I would love to work here again. Professionally I learned a ton of skills regarding how the operating system works with respect to autonomous cars. I also learned how to effectively research a new topic that has little to no information online. Many thanks to my mentor Sharath for guiding me through this process.<br>
-                            <br>
-                        </p>
-                    </div>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        <span>Career</span>
+      </div>
+      <h1>Work Experience</h1>
+      <p>A timeline of roles in software, embedded systems, and entrepreneurship.</p>
+    </div>
+  </div>
 
-                    <div class="border rounded shadow-lg item links" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Full Stack Developer</h3><a href="https://xe.com">
-                                    <h4 id="custom-organization" class="organization" href="https://xe.com">XE.com</h4>
-                                </a>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">01/2020 - 04/2020</span><span class="period"></span></div>
-                        </div><img src="assets/img/xe.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 20%;/*height: 25%;*/padding-bottom: 10px;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">I was originally hired to work as an Android developer but later was assigned to help develop XE's cross-platform app using React Native. Then, regrettably the project was cancelled, and I was reassigned to work with team Dong, the company's backend division.&nbsp;<br></p>
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">-&nbsp;<strong>Digitized</strong>&nbsp;the process of global trade by creating stunning UI components using&nbsp;<strong>React Native</strong><br>-&nbsp;<strong>Reduced</strong>&nbsp;future app development&nbsp;<strong>overhead</strong>&nbsp;<strong>by 80%</strong>&nbsp;by creating cross platform Log In API’s<br>- Greatly&nbsp;<strong>secured</strong>&nbsp;end users by migrating to Integrated Secret Tokens and User Pools using&nbsp;<strong>AWS &amp; Terraform</strong><br>-&nbsp;<strong>Developed</strong>&nbsp;20 API endpoints and 80+ testcases using&nbsp;<strong>JavaScript, Jest &amp; Postman</strong><br>-&nbsp;<strong>Documented</strong>&nbsp;endpoints using&nbsp;<strong>Swagger</strong><br>-&nbsp;<strong>Engaged in</strong>&nbsp;meetings regarding the scope of the project and how to break up the work with the other interns<br></p>
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">I would love to work here again. Besides working I made a ton of great friends,<br>played YuGiOh, had fun Friday lunches, and was invited to large scale<br>meetings. The month of April was memorable because we worked from home due to COVID-19.<br></p>
-                    </div>
-                    <div class="border rounded shadow-lg item" id="workExperience-custom-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3><strong>Software Developer +&nbsp;</strong><br><strong>Business&nbsp; Analyst (B.A)</strong></h3><a href="http://www.geonix.in">
-                                    <h4 id="custom-organization" class="organization">Genoix International Pvt Ltd.</h4>
-                                </a>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">05/2019 - 08/2019</span><span class="period"></span></div>
-                        </div><img src="assets/img/geonix.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 40%;height: 50%;">
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: center;">This was my first international work experience. I had been tasked to work with various departments during this co-op!&nbsp;<br></p>
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">- <strong>Created</strong> the WeParcel website using <strong>CSS, HTML, and AWS</strong><br>- <strong>Fixing</strong> the WeParcel Application and creating grounds for its web app.<br>- <strong>Reduced cost</strong> of app development by <strong>50%</strong> by <strong>strategically</strong> distributing work to junior developers<br>- <strong>Raised </strong>company market value by organizing over <strong>50 business meetings</strong> with foreign partners<br>- <strong>Increased</strong> WeParcel Customer <strong>reach &amp; engagement</strong> by<strong> 8000%</strong> through a strategic <strong>Ad Campaign</strong><br>- <strong>Acquired experience</strong> in <strong>adaptability</strong>,<strong> innovation</strong>, and <strong>cultural vision</strong> with the international experience<br><br></p>
-                        <p class="text-muted" style="font-family: Lato, sans-serif;text-align: left;">This Co-op was a great experience for me because I learned to adapt well in a foreign environment, appreciate cultural differences, and learn a new perspective in the engineering problem solving environment. I happily worked overtime because I really loved what I was doing. I was able to enjoy great food and local entertainment. Given a chance in the distant future, I would love to work for this company again! I am currently working as a contractor for their latest start up.<br></p>
-                    </div>
-                    <div id="workExperience-custom-item" class="border rounded shadow-lg item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Mobile Software Developer</h3>
-                                <h4 id="custom-organization" class="organization">Banalogic</h4>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">01/2018 -04/2018</span></div>
-                        </div><img src="assets/img/banalogic.jpg" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 50%;height: 50%;">
-                        <p class="text-muted">This was my first co-op job. Coming into the job I had already mastered the basics of Java, android development, and possessed strong soft skills. Leaving the job I had :&nbsp; <br>-&nbsp;<strong>Reduced API calls</strong> cost by <strong>90%</strong> by implementing <strong>video caching service</strong> instead of streaming&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<br>-&nbsp;<strong>Developing </strong>the&nbsp;Front-end and Back-end code for an&nbsp;<strong>Android</strong>&nbsp;application using&nbsp;<strong>Java</strong>&nbsp;and&nbsp;<strong>C++</strong>;&nbsp;<br>-&nbsp;<strong>Crashlytics</strong>&nbsp;and deep mobile testing using<strong>&nbsp;Firebase</strong>;&nbsp;<br>-&nbsp;<strong>PHP&nbsp;</strong>token encryption authentication with UTC timestamp;&nbsp;<br>-&nbsp;<strong>Agile&nbsp;</strong>workflow;&nbsp;<strong>Git&nbsp;</strong>with&nbsp;<strong>Linux Command Line</strong>;&nbsp;<br>-&nbsp;<strong>Launching</strong>&nbsp;a beta-testing environment and publishing an app with legal parameters;&nbsp;<br>-&nbsp;<strong>Assembling</strong>&nbsp;a PC and modifying a&nbsp;<strong>Linux flavor</strong>&nbsp;to fit the developers needs. &nbsp; &nbsp;<br>-&nbsp;<strong>Presenting</strong>&nbsp;ideas in a meeting and create physical models to represent problems. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>This Co-op was special to me because my supervisors were exceptionally kind and helpful. The environment they created encouraged me to work more than what was expected of me. I found that the ticket system in Microsoft visual studio helped keep me competitive with the other co-op student to finish the most work. I would love to work here again because the wide variety of work kept me excited.<br></p>
-                    </div>
-                    <div id="workExperience-custom-item" class="border rounded shadow-lg item item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Software Developer</h3>
-                                <h4 id="custom-organization" class="organization">CareGo Tek Inc.</h4>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">09/2018 - 12/2018</span></div>
-                        </div><img src="assets/img/carego.jpg" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 50%;height: 50%;">
-                        <p class="text-muted">- Created and Fixed over 500 Test Cases for Warehouse Automation Modules<br>- Designed screens for warehouse monitoring control unit using C# and CSHTML<br>- Engaged and recorded meetings to note and create solutions for my team, developed flow charts for the test cases, write up legal and technical documentation with coding structure, and prepared weekly software demos<br></p>
-                    </div>
-                    <div id="workExperience-custom-item" class="border rounded shadow-lg item item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>High School Tutor</h3>
-                                <h4 id="custom-organization" class="organization">Brampton Christian School</h4>
-                            </div>
-                            <div class="col-md-6"><span id="span-date" class="period">01/2017 - 05/2017</span></div>
-                        </div><img src="assets/img/BCS-logo-small.png" style="/*text-align: center;*//*align-self: center;*//*align-content: center;*/display: block;margin-left: auto;margin-right: auto;width: 13%;height: 13%;padding-bottom: 10px;">
-                        <p class="text-muted">- Taught 2 struggling students concepts in grade Physics and Mathematics<br>- Raised my physics student's average from 40% to 75%<br>- Raised my math student's average from 70% to 90% (honours)<br>-&nbsp;Teaching others is my passion: I feel a sense of pride whenever my students excel and realize their true potential<br></p>
-                    </div>
-                </div>
+  <!-- TIMELINE -->
+  <section>
+    <div class="container">
+      <div class="timeline">
+
+        <!-- ── JOB: CircuitWare ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Sep 2023 – Present</span>
+            <div class="job-logo">
+              <img src="assets/img/youthfully_logo.png" alt="CircuitWare" />
             </div>
-        </section>
-    </main>
-    <footer id="custom-page-footer" class="page-footer" style="padding-top: 0px;/*padding-bottom: 10px;*/height: 255px;">
-        <div class="container">
-            <div class="links"></div>
-            <div class="text-center social-icons" id="custom-social-icons">
-                <h2 class="text-center" style="font-size: 50px;color: white;">Find Me On</h2><a id="custom-link-icon" href="https://www.linkedin.com/in/namanjain1999/"><i class="icon ion-social-linkedin" id="footer-custom-icon"></i></a><a id="custom-link-icon" href="https://github.com/n27jain"><i class="icon ion-social-github" id="footer-custom-icon"></i></a><a id="custom-link-icon" href="https://www.youtube.com/channel/UCMwZ5Au6yeCouml0qgCPpCQ"><i class="icon ion-social-youtube" id="footer-custom-icon"></i></a>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Founder &amp; Consultant</p>
+            <h2 class="job-company">CircuitWare Inc.</h2>
+            <div class="job-body">
+              <p>Founded a consultancy firm combining hardware and software expertise to help clients turn technical ideas into inventions. Early projects included a self-calibrating smart light system and solar power calibration tools tailored to individual clients.</p>
+              <p>Gained deep insight into the patent system and intellectual property protection, which reinforced my decision to pursue patent law.</p>
             </div>
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/smart-forms.min.js"></script>
-    <script src="assets/js/Animated-Type-Heading.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-    <script src="assets/js/theme.js"></script>
+          </div>
+        </article>
+
+        <!-- ── JOB: Youthfully ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Oct 2022 – Present</span>
+            <div class="job-logo">
+              <img src="assets/img/youthfully_logo.png" alt="Youthfully" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Youth Coach</p>
+            <h2 class="job-company">Youthfully</h2>
+            <div class="job-body">
+              <p>Recruited by talent lead Marina based on my engineering background and teaching experience. I help students market themselves for college applications — specialising in engineering and law school applicants.</p>
+              <ul class="job-bullets">
+                <li>College application strategy and personal statement coaching</li>
+                <li>Interview preparation for engineering and law programs</li>
+                <li>Coding fundamentals training</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: VSTI ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Apr 2020 – Present</span>
+            <div class="job-logo">
+              <img src="assets/img/valuesmartlogo.png" alt="Value Smart Trading" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Business Owner</p>
+            <h2 class="job-company">Value Smart Trading Inc.</h2>
+            <div class="job-body">
+              <p>Identified a critical shortage of medical supplies (masks, hand sanitizers) during the 2020 pandemic and built a supply chain connecting Indian and Chinese manufacturers to Canadian businesses.</p>
+              <p>Scaled the business through referrals as neighbouring companies noticed our success. Generated <strong style="color:var(--ink)">$1.21M in revenue</strong> and approximately <strong style="color:var(--ink)">$0.5M in profit</strong> over two years.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: Ford ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Sep – Dec 2021</span>
+            <div class="job-logo">
+              <img src="assets/img/ford_logo.png" alt="Ford" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Autonomous Vehicle Android Developer</p>
+            <h2 class="job-company"><a href="https://www.ford.ca/" target="_blank">Ford</a></h2>
+            <div class="job-body">
+              <p>Joined Ford's Autonomous Vehicles division on the Media &amp; Connectivity team.</p>
+              <ul class="job-bullets">
+                <li>Implemented the optimal solution to display visualised path-finding on the car's display using <strong>Android Open-Source Platform</strong></li>
+                <li>Implemented <strong>RTSP</strong> media stream supporting <strong>RTP</strong> over Ethernet for low-latency video</li>
+                <li>Researched the <strong>Android Graphics Architecture</strong> to solve video frame loss with VLC SDK</li>
+                <li>Migrated and tested the new Embedded Systems chip to <strong>Android 11</strong></li>
+              </ul>
+              <p class="job-footer-note">Learned how OS-level systems interact with autonomous vehicles. Many thanks to mentor Sharath.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: XE ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Jan – Apr 2020</span>
+            <div class="job-logo">
+              <img src="assets/img/xe.png" alt="XE.com" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Full-Stack Developer</p>
+            <h2 class="job-company"><a href="https://xe.com" target="_blank">XE.com</a></h2>
+            <div class="job-body">
+              <p>Hired as Android developer, later moved to the cross-platform app using React Native, then reassigned to backend team Dong.</p>
+              <ul class="job-bullets">
+                <li>Digitised global trade flows by building UI components in <strong>React Native</strong></li>
+                <li>Reduced future app development overhead by <strong>80%</strong> via cross-platform Login APIs</li>
+                <li>Migrated auth to Integrated Secret Tokens and User Pools using <strong>AWS &amp; Terraform</strong></li>
+                <li>Developed <strong>20 API endpoints</strong> and <strong>80+ test cases</strong> in JavaScript, Jest &amp; Postman</li>
+                <li>Documented all endpoints using <strong>Swagger</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: Geonix ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">May – Aug 2019</span>
+            <div class="job-logo">
+              <img src="assets/img/geonix.png" alt="Geonix" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Software Developer &amp; Business Analyst</p>
+            <h2 class="job-company"><a href="http://www.geonix.in" target="_blank">Genoix International Pvt. Ltd.</a></h2>
+            <div class="job-body">
+              <p>First international co-op. Worked across multiple departments in India.</p>
+              <ul class="job-bullets">
+                <li>Built the WeParcel website using <strong>CSS, HTML, and AWS</strong></li>
+                <li>Reduced app development cost by <strong>50%</strong> by strategically distributing work to junior developers</li>
+                <li>Organised over <strong>50 business meetings</strong> with foreign partners</li>
+                <li>Increased WeParcel customer reach by <strong>8,000%</strong> through a targeted ad campaign</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: Banalogic ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Jan – Apr 2018</span>
+            <div class="job-logo">
+              <img src="assets/img/banalogic.jpg" alt="Banalogic" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Mobile Software Developer</p>
+            <h2 class="job-company">Banalogic</h2>
+            <div class="job-body">
+              <ul class="job-bullets">
+                <li>Reduced API call costs by <strong>90%</strong> by implementing a video caching service</li>
+                <li>Built front-end and back-end for an Android app in <strong>Java</strong> and <strong>C++</strong></li>
+                <li>Deep mobile testing with <strong>Crashlytics</strong> and Firebase</li>
+                <li>Implemented <strong>PHP</strong> token encryption authentication with UTC timestamp</li>
+                <li>Worked in an <strong>Agile</strong> environment with Git and Linux CLI</li>
+                <li>Launched a beta-testing environment and published to the Play Store</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: CareGo ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Sep – Dec 2018</span>
+            <div class="job-logo">
+              <img src="assets/img/carego.jpg" alt="CareGo" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">Software Developer</p>
+            <h2 class="job-company">CareGo Tek Inc.</h2>
+            <div class="job-body">
+              <ul class="job-bullets">
+                <li>Created and fixed over <strong>500 test cases</strong> for Warehouse Automation Modules</li>
+                <li>Designed warehouse monitoring UI screens using <strong>C# and CSHTML</strong></li>
+                <li>Developed flowcharts, technical documentation, and weekly software demos</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── JOB: Tutor ── -->
+        <article class="job">
+          <div class="job-meta">
+            <span class="job-date">Jan – May 2017</span>
+            <div class="job-logo">
+              <img src="assets/img/BCS-logo-small.png" alt="Brampton Christian School" />
+            </div>
+          </div>
+          <div class="job-rule"></div>
+          <div class="job-content">
+            <p class="job-role">High School Tutor</p>
+            <h2 class="job-company">Brampton Christian School</h2>
+            <div class="job-body">
+              <ul class="job-bullets">
+                <li>Taught Physics and Mathematics to two struggling students</li>
+                <li>Raised Physics student's average from <strong>40% → 75%</strong></li>
+                <li>Raised Mathematics student's average from <strong>70% → 90%</strong> (honours)</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Naman Jain</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="contact-me.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
-
 </html>

@@ -1,86 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Writing</title>
-    <link rel="icon" type="image/png" sizes="200x200" href="assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="assets/css/News-Cards.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/Team-with-rotating-cards.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Naman Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================================================
+       WRITING PAGE STYLES
+    ============================================================ */
+
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Writing card */
+    .writing-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      display: flex; flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .writing-card:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,.07);
+      transform: translateY(-4px);
+    }
+
+    .writing-cover {
+      height: 240px; overflow: hidden;
+      background: var(--accent-pale);
+    }
+    .writing-cover img { transition: transform .4s ease; }
+    .writing-card:hover .writing-cover img { transform: scale(1.04); }
+
+    .writing-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+    .writing-tag {
+      font-size: .7rem; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
+    }
+
+    .writing-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem; line-height: 1.2;
+      margin-bottom: .9rem;
+    }
+
+    .writing-synopsis {
+      font-size: .9rem; color: var(--ink-light);
+      line-height: 1.7; flex: 1;
+    }
+
+    .writing-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .writing-status {
+      font-size: .75rem; font-weight: 500;
+      padding: .25rem .65rem; border-radius: 2px;
+      background: var(--accent-pale); color: var(--accent);
+    }
+
+    .writing-link {
+      font-size: .8rem; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-light);
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .writing-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+    /* ── Call to action / submit strip ── */
+    .writing-cta {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .writing-cta h3 { font-family: var(--font-display); font-size: 1.4rem; }
+    .writing-cta p { color: var(--ink-light); font-size: .9rem; margin-top: .4rem; }
+
+    @media (max-width: 680px) {
+      .writing-cta { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
+<body>
 
-<body >
-    <nav class="navbar navbar-dark navbar-expand-lg bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="index.html" style="background: url(&quot;assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png&quot;);"><strong>NamanGineer</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                    <li class="nav-item"><a class="nav-link " href="photography.html">Photography</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="writing.html">Writing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-me.html">Contact</a></li>
-                </ul>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Naman<span>Gineer</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Work</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="writing.html" class="active">Writing</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span>Creative Work</span></div>
+      <h1>Writing</h1>
+      <p>Screenplays, stories, and ideas that live outside of code.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+
+      <!--
+        TO ADD A PIECE: copy a <article class="writing-card"> block.
+        Update: cover img src, tag, title, synopsis, status label, and link href.
+      -->
+      <div class="writing-grid">
+
+        <!-- PIECE 1 -->
+        <article class="writing-card">
+          <div class="writing-cover">
+            <img src="assets/img/lying_lawyers_poster.png" alt="Lying Lawyer Poster" />
+          </div>
+          <div class="writing-body">
+            <p class="writing-tag">Hobby Screenplay</p>
+            <h2 class="writing-title">Lying Lawyer</h2>
+            <p class="writing-synopsis">
+              Born in a strict household, Vijay — a fun-loving mathematical genius — is forced into becoming a lawyer. But unlike his father's ambitions, he takes virtually no compensation from clients. All he asks for is a single favour, anything he wants, redeemable at any time. Since favours carry no legal weight, every client agrees.
+            </p>
+            <p class="writing-synopsis" style="margin-top:.75rem;">
+              What does he want? What are his true intentions? In this twisted game of justice, where good and bad are never black and white, who truly wins — those who achieve justice, or those who follow the path of justice? We all have secrets that could condemn us in the right society. But what if one builds their own?
+            </p>
+            <div class="writing-footer">
+              <span class="writing-status">In Progress</span>
+              <a class="writing-link" href="contact-me.html">Request a read →</a>
             </div>
+          </div>
+        </article>
+
+        <!-- ADD MORE PIECES HERE — duplicate the block above -->
+
+      </div>
+
+      <!-- CTA STRIP -->
+      <div class="writing-cta">
+        <div>
+          <h3>Have an idea to collaborate on?</h3>
+          <p>Always open to co-writing, story development, or screenplay feedback.</p>
         </div>
-    </nav>
-    <section class="py-5">
-        <div class="container py-5">
-            <div class="row mb-4 mb-lg-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h3 class="fw-bold">Writing</h3>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-5"><img class="rounded img-fluid shadow" src="assets/img/lying_lawyers_poster.png"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h5 class="fw-bold">Lying Lawyer</h5>
-                        <p class="text-muted mb-4">Born in a strict household, Vijay a fun loving mathematical genius is forced into becoming a lawyer. But rather than trying to make as much money as possible like his father pushes, he decides to take virtually no compensation from his clients. All he asks from his clients is a single favor for anything that he wants in the future. Because favors cannot be legally binding to anyone, all of his clients agree. But what does he want? What are his true intentions? How is it that he is able to defend clients in a way that is almost clairvoyance? 
-                            In this twisted game of justice, who will be victorious, who snuffed out? Good and bad is never black and white, but are those who win justice, or those who follow the path of justice victorious?
-                            
-                            We all have secrets that can condemn us in the appropriate society, but what if one makes their own society? 
-                            
-                            Hobby Screenplay. </p>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col order-md-last mb-5"><img class="rounded img-fluid shadow" src="assets/img/products/2.jpg"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h5 class="fw-bold">The Jinn of the 7 sins</h5>
-                        <p class="text-muted mb-4">Erat netus est hendrerit, nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-5"><img class="rounded img-fluid shadow" src="assets/img/products/3.jpg"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h5 class="fw-bold">Billion Dollar Murder</h5>
-                        <p class="text-muted mb-4">Erat netus est hendrerit, nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </section>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bold-and-dark.js"></script>
+        <a class="btn btn-primary" href="contact-me.html">Get in touch</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Naman Jain</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="contact-me.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
 </body>
-
 </html>

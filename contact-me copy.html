@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Naman Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================================================
+       CONTACT PAGE STYLES
+    ============================================================ */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* Left sidebar */
+    .contact-sidebar {}
+
+    .contact-intro {
+      font-size: 1rem; color: var(--ink-light);
+      line-height: 1.8; margin-bottom: 2.5rem;
+    }
+
+    .contact-detail-block { margin-bottom: 2rem; }
+
+    .contact-detail-label {
+      font-size: .7rem; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--accent);
+      display: block; margin-bottom: .4rem;
+    }
+
+    .contact-detail-value {
+      font-size: .95rem; color: var(--ink);
+    }
+    .contact-detail-value a { color: var(--ink); }
+    .contact-detail-value a:hover { color: var(--accent); text-decoration: none; }
+
+    .social-row {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1rem; border: 1px solid var(--border);
+      border-radius: 2px; font-size: .82rem; font-weight: 500;
+      color: var(--ink-light); transition: border-color .2s, color .2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* Right: form */
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-family: var(--font-display); font-size: 1.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-light); margin-bottom: .45rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: .75rem 1rem;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--bg); font-family: var(--font-body);
+      font-size: .93rem; color: var(--ink);
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200, 80, 26, .1);
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-submit {
+      width: 100%; padding: .85rem;
+      background: var(--ink); color: var(--white);
+      border: none; border-radius: 2px;
+      font-family: var(--font-body); font-size: .88rem;
+      font-weight: 500; letter-spacing: .06em;
+      cursor: pointer; transition: background .2s;
+      margin-top: .5rem;
+    }
+    .form-submit:hover { background: var(--accent); }
+
+    .form-success {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .form-success h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: .5rem; }
+    .form-success p { color: var(--ink-light); }
+    .form-success .checkmark {
+      font-size: 2.5rem; margin-bottom: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Naman<span>Gineer</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Work</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="contact-me.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span>Get In Touch</span></div>
+      <h1>Contact</h1>
+      <p>Open to freelance projects, collaborations, and interesting conversations.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- LEFT SIDEBAR -->
+        <div class="contact-sidebar">
+          <p class="contact-intro">
+            Whether you have a software project in mind, need patent law advice, want
+            coaching for a college application, or just want to say hello — my inbox
+            is always open.
+          </p>
+
+          <!--
+            EDIT: update the value fields with real links/details
+          -->
+          <div class="contact-detail-block">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">
+              <a href="/cdn-cgi/l/email-protection#452b2428242b052b2428242b222c2b2020376b262a28"><span class="__cf_email__" data-cfemail="fa949b979b94ba949b979b949d93949f9f88d4999597">[email&#160;protected]</span></a>
+            </span>
+          </div>
+
+          <div class="contact-detail-block">
+            <span class="contact-detail-label">Based In</span>
+            <span class="contact-detail-value">Windsor, Ontario, Canada</span>
+          </div>
+
+          <div class="contact-detail-block">
+            <span class="contact-detail-label">Open To</span>
+            <span class="contact-detail-value">
+              Freelance · Consulting · Collaborations · Patent Law Questions
+            </span>
+          </div>
+
+          <!-- Social links — update hrefs -->
+          <div class="social-row">
+            <a class="social-btn" href="https://linkedin.com" target="_blank">LinkedIn →</a>
+            <a class="social-btn" href="https://github.com" target="_blank">GitHub →</a>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form-wrap">
+          <h2 class="form-title">Send a message</h2>
+
+          <div id="form-container">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Jane Smith" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="jane@example.com" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <!--
+                EDIT: add/remove <option> tags to change the subject dropdown
+              -->
+              <select id="subject">
+                <option value="" disabled selected>Choose a subject…</option>
+                <option value="job">Job Offer</option>
+                <option value="freelance">Freelance Project</option>
+                <option value="coaching">Coaching / Tutoring</option>
+                <option value="patent">Patent Law Question</option>
+                <option value="general">General Contact</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Preferred Contact Date (optional)</label>
+              <input type="date" id="date" />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me about your project or question…"></textarea>
+            </div>
+
+            <button class="form-submit" onclick="submitForm()">Send Message →</button>
+          </div>
+
+          <!-- Success state (shown after submit) -->
+          <div class="form-success" id="form-success">
+            <div class="checkmark">✓</div>
+            <h3>Message sent!</h3>
+            <p>Thanks for reaching out. I'll get back to you within 1–2 business days.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Naman Jain</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="contact-me.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function submitForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in your name, email, and message before sending.');
+        return;
+      }
+
+      // Replace this block with a real form submission (e.g. Formspree, EmailJS)
+      // fet

@@ -1,156 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Photography</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="icon" type="image/png" sizes="200x200" href="assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="assets/css/News-Cards.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/Team-with-rotating-cards.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photography — Naman Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================================================
+       PHOTOGRAPHY PAGE STYLES
+    ============================================================ */
+
+    /* Masonry-style grid */
+    .photo-grid {
+      columns: 3;
+      column-gap: 1rem;
+    }
+    @media (max-width: 860px) { .photo-grid { columns: 2; } }
+    @media (max-width: 500px) { .photo-grid { columns: 1; } }
+
+    /* Each photo item */
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .photo-item img {
+      width: 100%; height: auto; display: block;
+      transition: transform .4s ease;
+    }
+    .photo-item:hover img { transform: scale(1.04); }
+
+    /* Caption overlay */
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(26,24,20,.85) 0%, transparent 100%);
+      color: var(--white); padding: 2rem 1rem .9rem;
+      transform: translateY(100%); transition: transform .3s ease;
+    }
+    .photo-item:hover .photo-caption { transform: translateY(0); }
+
+    .photo-caption h3 {
+      font-family: var(--font-display); font-size: 1rem;
+      margin-bottom: .2rem; font-weight: 400;
+    }
+    .photo-caption p { font-size: .78rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(26,24,20,.95);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      width: auto; height: auto;
+      object-fit: contain; border-radius: 2px;
+    }
+    .lightbox-info {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      text-align: center; color: var(--white);
+    }
+    .lightbox-info h3 { font-family: var(--font-display); font-size: 1.1rem; }
+    .lightbox-info p { font-size: .85rem; color: rgba(255,255,255,.6); margin-top: .3rem; }
+
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--white);
+      font-size: 1.5rem; cursor: pointer; padding: .5rem;
+      line-height: 1; opacity: .7; transition: opacity .2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: 1px solid rgba(255,255,255,.2);
+      color: var(--white); font-size: 1.2rem; cursor: pointer;
+      padding: .75rem 1rem; border-radius: 2px;
+      transition: background .2s, border-color .2s;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); }
+    .lightbox-nav.prev { left: 1.5rem; }
+    .lightbox-nav.next { right: 1.5rem; }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="index.html" style="background: url(&quot;assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png&quot;);"><strong>NamanGineer</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Work</a></li>
-                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="photography.html">Photography</a></li>
-                    <li class="nav-item"><a class="nav-link" href="writing.html">Writing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-me.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header class="bg-dark"></header>
-    <div class="container py-5">
-        <div class="row mb-5">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2 class="fw-bold">Photography</h2>
-                <p class="text-muted w-lg-50">A view to behold &nbsp;</p>
-            </div>
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-            <div class="col mb-4">
-                <div><a href="#assets/img/beehive_mountain.jpg"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/beehive_mountain.jpg" "></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Beehive Mountain</h4>
-                        <p class="text-muted">On the way to Banff, Alberta, this scenic route just blew my mind. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/bow lake.jpg" "></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Bow Lake</h4>
-                        <p class="text-muted">Behold the beauty of this great lake filled with sulfur giving it the rich milky blue color I have grown to love.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/canyonfalls.jpg" "></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Staircase Waterfall</h4>
-                        <p class="text-muted">
-                            Observing natural phenomena is a treasure to the eyes, its crashing sounds tranquility to the ears, and its sulfuric water shocking to the nose. I can imagine that it must taste pretty strange though.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/hidden_lake_montaintop.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Hidden Lake Mountaintop</h4>
-                        <p class="text-muted">
-                            Glacier National Park's top lookout point. It took us 4hrs to drive here and 2hrs to hike but man was it worth it. Beware of BEARS!
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/jaipur_no_filter.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Welcome to Gujrat</h4>
-                        <p class="text-muted">This history city of Bhuj. With its history and distinct architecture, it makes Europe feel like a boring place to visit comparatively.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/lagan_town_square.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Pragmahal Palace ki Lagan hain</h4>
-                        <p class="text-muted">This amazing palace is where the classic Indian movie Lagaan was shot. The area is a bit worn down but gave me chills with nostalgia. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/factory_india.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Tree in Factory</h4>
-                        <p class="text-muted">I was surprised to find a full-fledged tree growing inside my uncle's factory in India. Nature, development, and peace among these things are very underrated in India. </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/ferris_buffalo.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Ferris Wheel Buffalo</h4>
-                        <p class="text-muted">I honestly really liked this picture. It’s a very normal attraction in the world, but sometimes photos don’t really need a reason to exist and sometimes don’t need a reason to be shared.</p>
-                    </div>
-                </div>
-            </div>
-
-            
-
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/temple_athena.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Temple of Athena and Nike, Athens</h4>
-                        <p class="text-muted">As the name suggests, this temple was used to worship the Goddess Athena and Nike by Athens in their war against the ferocious Spartans.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/Acropolis.jpg" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Parthenon</h4>
-                        <p class="text-muted">Another temple devoted to Athena, this one is shrouded with mystery and controversy. Parthenon is believed to be quarters for unmarried women, but its exact purpose is still debated in various ways. </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col mb-4">
-                <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="assets/img/photoshop_ferrari.png" ></a>
-                    <div class="py-4">
-                        <h4 class="fw-bold">Ferrari land in my Dream</h4>
-                        <p class="text-muted">I had a dream. Then I photoshopped it. Yeah… Not bad right? Please don't tell Disney</p>
-                    </div>
-                </div>
-            </div>
-
-            
-        </div>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Naman<span>Gineer</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Work</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="photography.html" class="active">Photography</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
+      </ul>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bold-and-dark.js"></script>
-</body>
+  </nav>
 
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span>Visual Journal</span></div>
+      <h1>Photography</h1>
+      <p>Places, moments, and things that caught my eye — from the Rockies to Athens.</p>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section>
+    <div class="container">
+
+      <!--
+        TO ADD A PHOTO: copy one <div class="photo-item"> block and update:
+          - data-index (increment by 1)
+          - src (image path)
+          - alt, h3, and p (caption text)
+      -->
+      <div class="photo-grid" id="gallery">
+
+        <div class="photo-item" data-index="0" onclick="openLightbox(0)">
+          <img src="assets/img/beehive_mountain.jpg" alt="Beehive Mountain" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Beehive Mountain</h3>
+            <p>On the scenic route to Banff, Alberta — this view stopped me in my tracks.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="1" onclick="openLightbox(1)">
+          <img src="assets/img/bow lake.jpg" alt="Bow Lake" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Bow Lake</h3>
+            <p>Sulfur minerals give the water its signature milky turquoise colour.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="2" onclick="openLightbox(2)">
+          <img src="assets/img/canyonfalls.jpg" alt="Staircase Waterfall" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Staircase Waterfall</h3>
+            <p>Crashing sounds, sulfuric mist — a full sensory experience.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="3" onclick="openLightbox(3)">
+          <img src="assets/img/hidden_lake_montaintop.jpg" alt="Hidden Lake Mountaintop" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Hidden Lake Mountaintop</h3>
+            <p>Glacier National Park's top lookout. 4-hr drive + 2-hr hike. Beware of bears.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="4" onclick="openLightbox(4)">
+          <img src="assets/img/jaipur_no_filter.jpg" alt="Welcome to Gujarat" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Welcome to Gujarat</h3>
+            <p>The historic city of Bhuj — distinct architecture that puts Europe to shame.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="5" onclick="openLightbox(5)">
+          <img src="assets/img/lagan_town_square.jpg" alt="Pragmahal Palace" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Pragmahal Palace — Lagaan's Setting</h3>
+            <p>Where the classic Indian film Lagaan was shot. Worn but full of nostalgia.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="6" onclick="openLightbox(6)">
+          <img src="assets/img/factory_india.jpg" alt="Tree in Factory" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Tree in Factory</h3>
+            <p>A full-grown tree inside my uncle's factory in India. Nature finds a way.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="7" onclick="openLightbox(7)">
+          <img src="assets/img/ferris_buffalo.jpg" alt="Ferris Wheel Buffalo" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Ferris Wheel, Buffalo</h3>
+            <p>Sometimes photos don't need a reason to exist — or to be shared.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="8" onclick="openLightbox(8)">
+          <img src="assets/img/temple_athena.jpg" alt="Temple of Athena and Nike" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Temple of Athena and Nike, Athens</h3>
+            <p>Worshipped by Athens in their war against the Spartans.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="9" onclick="openLightbox(9)">
+          <img src="assets/img/Acropolis.jpg" alt="Parthenon" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Parthenon, Athens</h3>
+            <p>Devoted to Athena. Its exact purpose is still debated by historians.</p>
+          </div>
+        </div>
+
+        <div class="photo-item" data-index="10" onclick="openLightbox(10)">
+          <img src="assets/img/photoshop_ferrari.png" alt="Ferrari Photoshop" loading="lazy" />
+          <div class="photo-caption">
+            <h3>Ferrari in My Dream</h3>
+            <p>I had a dream. Then I photoshopped it. Please don't tell Disney.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightboxDirect()">✕</button>
+    <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)">‹</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">›</button>
+    <div class="lightbox-info">
+      <h3 id="lightbox-title"></h3>
+      <p id="lightbox-desc"></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Naman Jain</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="contact-me.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Build photo data from DOM
+    const photos = [...document.querySelectorAll('.photo-item')].map(el => ({
+      src: el.querySelector('img').src,
+      alt: el.querySelector('img').alt,
+      title: el.querySelector('h3').textContent,
+      desc: el.querySelector('p').textContent,
+    }));
+
+    let current = 0;
+
+    function openLightbox(index) {
+      current = index;
+      showPhoto(current);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showPhoto(index) {
+      const p = photos[index];
+      document.getElementById('lightbox-img').src = p.src;
+      document.getElementById('lightbox-img').alt = p.alt;
+      document.getElementById('lightbox-title').textContent = p.title;
+      document.getElementById('lightbox-desc').textContent = p.desc;
+    }
+
+    function closeLightbox(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightboxDirect();
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir, e) {
+      e.stopPropagation();
+      current = (current + dir + photos.length) % photos.length;
+      showPhoto(current);
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowRight') navigateLightbox(1, { stopPropagation: () => {} });
+      if (e.key === 'ArrowLeft') navigateLightbox(-1, { stopPropagation: () => {} });
+      if (e.key === 'Escape') closeLightboxDirect();
+    });
+  </script>
+
+</body>
 </html>
