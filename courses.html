@@ -1,424 +1,720 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Courses</title>
-    <meta name="description" content=" Hello! My name is Naman Jain, and I am a kick-ass Computer
-Engineer.  Along with studying for my degree in Computer Engineering at the University of Waterloo, I write screenplays  and do some freelancing work in designing and hosting websites.">
-    <link rel="icon" type="image/png" sizes="200x200" href="assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
-    <link rel="stylesheet" href="assets/css/News-Cards.css">
-    <link rel="stylesheet" href="assets/css/Projects-Clean.css">
-    <link rel="stylesheet" href="assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="assets/css/Team-with-rotating-cards.css">
-    <link rel="stylesheet" href="assets/css/untitled.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses — Naman Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================================================
+       COURSES PAGE STYLES
+    ============================================================ */
+
+    /* Year filter tabs */
+    .year-tabs {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .year-tab {
+      padding: .4rem 1rem; border-radius: 2px; font-size: .8rem;
+      font-weight: 500; letter-spacing: .06em; cursor: pointer;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--ink-light); font-family: var(--font-body);
+      transition: all .2s;
+    }
+    .year-tab:hover, .year-tab.active {
+      background: var(--ink); color: var(--white); border-color: var(--ink);
+    }
+
+    /* Year group */
+    .year-group { margin-bottom: 4rem; }
+    .year-group[data-year] { display: block; }
+    .year-group.hidden { display: none; }
+
+    .year-heading {
+      font-family: var(--font-display);
+      font-size: 1.6rem; margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* Course grid */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Course card */
+    .course-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      background: var(--white);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .course-card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      transform: translateY(-2px);
+    }
+
+    .course-code {
+      font-size: .68rem; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .4rem;
+    }
+    .course-name {
+      font-family: var(--font-display); font-size: 1.05rem;
+      margin-bottom: .6rem; line-height: 1.3;
+    }
+    .course-desc {
+      font-size: .85rem; color: var(--ink-light); line-height: 1.6;
+    }
+    .course-topics {
+      margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .35rem;
+    }
+    .topic-tag {
+      font-size: .7rem; padding: .2rem .55rem;
+      background: var(--accent-pale); color: var(--accent);
+      border-radius: 2px; font-weight: 500;
+    }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="index.html" style="background: url(&quot;assets/img/fe52caf6-4725-4574-a2b6-698cb2925dae_200x200.png&quot;);"><strong>NamanGineer</strong></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="experience.html">Work</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="courses.html">Courses</a></li>
-                    <li class="nav-item"><a class="nav-link" href="photography.html">Photography</a></li>
-                    <li class="nav-item"><a class="nav-link" href="writing.html">Writing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-me.html">Contact</a></li>
-                </ul>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Naman<span>Gineer</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="experience.html">Work</a></li>
+        <li><a href="courses.html" class="active">Courses</a></li>
+        <li><a href="photography.html">Photography</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="contact-me.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow"><span class="eyebrow-line"></span><span>University of Waterloo &amp; Windsor Law</span></div>
+      <h1>Courses</h1>
+      <p>Computer Engineering and Law degrees, year by year — with honest notes on each.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+
+      <!-- Filter tabs -->
+      <div class="year-tabs">
+        <button class="year-tab active" onclick="filterYear('all', this)">All Years</button>
+        <button class="year-tab" onclick="filterYear('1a', this)">Eng 1A</button>
+        <button class="year-tab" onclick="filterYear('1b', this)">Eng 1B</button>
+        <button class="year-tab" onclick="filterYear('2a', this)">Eng 2A</button>
+        <button class="year-tab" onclick="filterYear('2b', this)">Eng 2B</button>
+        <button class="year-tab" onclick="filterYear('3a', this)">Eng 3A</button>
+        <button class="year-tab" onclick="filterYear('3b', this)">Eng 3B</button>
+        <button class="year-tab" onclick="filterYear('4a', this)">Eng 4A</button>
+        <button class="year-tab" onclick="filterYear('4b', this)">Eng 4B</button>
+        <button class="year-tab" onclick="filterYear('law-1l', this)">Law 1L</button>
+        <button class="year-tab" onclick="filterYear('law-2l-fall', this)">Law 2L Fall</button>
+        <button class="year-tab" onclick="filterYear('law-2l-winter', this)">Law 2L Winter</button>
+        <button class="year-tab" onclick="filterYear('law-3l-fall', this)">Law 3L Fall</button>
+        <button class="year-tab" onclick="filterYear('law-3l-winter', this)">Law 3L Winter</button>
+      </div>
+
+      <!-- ── YEAR 1A ── -->
+      <div class="year-group" data-year="1a">
+        <h2 class="year-heading">Year 1A</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ECE 150</p>
+            <h3 class="course-name">Fundamentals of Programming</h3>
+            <p class="course-desc">Basics of programming in C++. Awesome course — learned a ton. Final project: a Pong game built on an Onion Omega microcontroller with ultrasonic sensors.</p>
+            <div class="course-topics">
+              <span class="topic-tag">C++</span><span class="topic-tag">Pointers</span><span class="topic-tag">OOP</span><span class="topic-tag">Polymorphism</span>
             </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 190</p>
+            <h3 class="course-name">Engineering Profession</h3>
+            <p class="course-desc">Teaches what it means to be an engineer — safety, responsibilities, project management, entrepreneurship, and joining the engineering society.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Safety</span><span class="topic-tag">Ethics</span><span class="topic-tag">Project Mgmt</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">CHE 102</p>
+            <h3 class="course-name">Chemistry for Engineers</h3>
+            <p class="course-desc">Electrochemistry, unit conversion, chemical reactions, and phase theory. Not an easy course, but an engaging professor made it bearable.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Electrochemistry</span><span class="topic-tag">Phase Theory</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 105</p>
+            <h3 class="course-name">Classical Mechanics</h3>
+            <p class="course-desc">Dynamics, circular motion, work, energy, momentum, harmonic motion, and rolling motion. Notoriously one of the course designed to weed students out.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Dynamics</span><span class="topic-tag">Energy</span><span class="topic-tag">Momentum</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">MATH 115</p>
+            <h3 class="course-name">Linear Algebra</h3>
+            <p class="course-desc">Advanced linear algebra — matrices, vector spaces, complex numbers. Concepts I still apply when building image recognition engines and ML algorithms.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Matrices</span><span class="topic-tag">Vector Spaces</span><span class="topic-tag">ML Foundations</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">MATH 119</p>
+            <h3 class="course-name">Calculus and Vectors</h3>
+            <p class="course-desc">Fast-paced calculus covering Taylor polynomials, Newton's method, interpolation, and advanced integrals. Very challenging for Ontario high-school students.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Taylor Series</span><span class="topic-tag">Integration</span>
+            </div>
+          </div>
+
         </div>
-    </nav>
-    <main class="page project-page">
-        <section class="portfolio-block project" style="height: 300px;padding-top: 50px;padding-bottom: 50px;">
-            <div class="container">
-                <div class="border rounded image" style="background: url(&quot;assets/img/waterloo.png&quot;) center / contain no-repeat;height: 200px;"></div>
+      </div>
+
+      <!-- ── YEAR 1B ── -->
+      <div class="year-group" data-year="1b">
+        <h2 class="year-heading">Year 1B</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ECE 140</p>
+            <h3 class="course-name">Linear Circuits</h3>
+            <p class="course-desc">Introduction to circuits: Ohm's and Kirchhoff's laws, nodal/mesh analysis, op-amps, time response, and sinusoidal steady-state. Really enjoyed this one.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Op-Amps</span><span class="topic-tag">Nodal Analysis</span><span class="topic-tag">Circuit Design</span>
             </div>
-        </section>
-    </main>
-    <div class="features-boxed" style="background: white;"><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year1A"
-        >
-    Year 1A
-</button>
-        <div class="container shadow-none year-container collapse" id="year1A" style="/*display: inherit;*/">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 150<br>Fundamentals of Programming</h3>
-                        <p class="text-left description">Basics of programming in C++<br>Awesome course I learned a ton!</p>
-                        <p class="text-left description">- Pointers<br>- Memory allocation and garbage cleaning<br>- Object orientated programming<br>- Polymorphism<br></p>
-                        <p class="text-left description">Final Project</p>
-                        <p class="text-left description">- <strong>Onion Omega microcontroller</strong><br>- Created a pong game with ultra sonic sensors</p>
-                    </div>
-                    <div class="box"><i class="fa fa-american-sign-language-interpreting icon"></i>
-                        <h3 class="name">ECE 190<br>Engineering Profession</h3>
-                        <p class="text-left description">Amazing course that teaches you what it means to be an engineer.&nbsp;</p>
-                        <p class="text-left description">- Eng Safety<br>- Eng Responsibilities&nbsp;<br>- Project Management<br>- Business / Entrepreneurship<br>- Entering Engineering Society<br></p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-flask icon"></i>
-                        <h3 class="name">CHE 102<br>Chemistry for Engineers<br></h3>
-                        <p class="text-left description">Basically an engineering requirement. Basics in electrochemistry, unit conversion, chemical reactions,&nbsp; and phase theory. This is not an easy course! I did not enjoy the content that much but our professor was really engaging.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-lightbulb-o icon"></i>
-                        <h3 class="name">ECE 105<br>Classical Mechanics<br></h3>
-                        <p class="text-left description">Basically an engineering requirement designed to fail 1/3 of the class since Uwaterloo takes too many students to support in the first year. The course covers dynamics, circular motion, work, energy, momentum, harmonic motion, and rolling motion. I hated every minute of this course.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">Math 115<br>Linear Algebra</h3>
-                        <p class="text-left description">Advanced topics that are derived from high school linear algebra courses.&nbsp;<br>- Linear equations<br>- Matrices<br>- Vector Spaces<br>- Complex Numbers<br>It was a tough and enriching course. Concepts that I still use today when creating image recognition engines. Or working with ML algorithmns<br><br></p>
-                    </div>
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">Math 119<br>Calculus and Vectors</h3>
-                        <p class="text-left description">A very fast paced course that students outside of Ontario find easy ( I am an Ontario student).&nbsp;<br><br>- Interpolation, Taylor Polynomials, Various methods like newtons method<br>- Advanced Integrals<br>This course was very challenging because of how quickly we covered topics.&nbsp;<br><br></p>
-                    </div>
-                </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 124</p>
+            <h3 class="course-name">Digital Circuits</h3>
+            <p class="course-desc">A real computer engineering course — hardware design, boolean algebra, timing analysis, number systems, and assembly language to build arithmetic components like adders.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Assembly</span><span class="topic-tag">Boolean Algebra</span><span class="topic-tag">Hardware</span>
             </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year1B"
-        >
-    Year 1B
-</button>
-        <div class="container shadow-none year-container collapse" id="year1B">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-joomla icon"></i>
-                        <h3 class="name">ECE 140<br>Linear Circuits</h3>
-                        <p class="text-left description">Introduction and advance topics of designing circuits. Professor Ramadan was&nbsp; I really enjoyed this course.&nbsp;</p>
-                        <p class="text-left description">- Finding Voltage, Current, and Capacitance using Ohm's and Kirchhoff's laws<br>- Nodal analysis, Mesh Analysis<br>- Circuit Transformation<br>- Op-Amps<br>- Time response<br>- Sinusoidal steady-state</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-microchip icon"></i>
-                        <h3 class="name">ECE 124<br>Digital Circuits<br></h3>
-                        <p class="text-left description">A real computer engineering course! We learned about computer hardware and how to program hardware for optimal solutions. We covered number systems, boolean algebra, and timing analysis. We used assembly language to program various computer arithmetical components such as an adder or a multiplexor.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-lightbulb-o icon"></i>
-                        <h3 class="name">ECE 106<br>Electromagnitism<br></h3>
-                        <p class="text-left description">Basically another engineering requirement filled with bogus content. Yes we learn a ton of interesting things but the pacing is poor, the professors don't teach well, and then they aggressively make our exams impossible to complete. I am sure I scored a 33% on my final (since I could only fill 1/3 of it ) but ended up with at 70%.&nbsp; Any course designed to fail students is a bad one.&nbsp;</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-dice icon"></i>
-                        <h3 class="name">ECE 108<br>Discrete Math</h3>
-                        <p class="text-left description">Surprisingly interesting course. We learn about proving mathematical statements and how to think outside the box. We covered Boolean logic, syntax and semantics, proof theory, model theory, set theory, and permissions/combinations.&nbsp;<br><br></p>
-                    </div>
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">ECE 119<br>Calculus 2</h3>
-                        <p class="text-left description">A much more challenging ECE117. This was taught by an amazing professor (Brenda). Taylor series and polynomials, functional partial derivatives, linear approximation, and vectors were covered in this course.</p>
-                    </div>
-                </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 106</p>
+            <h3 class="course-name">Electromagnetism</h3>
+            <p class="course-desc">Interesting content but poorly paced and brutal exams. Somehow finished with a 70% after completing only 1/3 of the final.</p>
+            <div class="course-topics">
+              <span class="topic-tag">EM Fields</span><span class="topic-tag">Maxwell's Eqs</span>
             </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 108</p>
+            <h3 class="course-name">Discrete Math</h3>
+            <p class="course-desc">Surprisingly interesting. Boolean logic, proof theory, model theory, set theory, and combinatorics. Great for training abstract thinking.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Proof Theory</span><span class="topic-tag">Set Theory</span><span class="topic-tag">Logic</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 119</p>
+            <h3 class="course-name">Calculus 2</h3>
+            <p class="course-desc">Taylor series, partial derivatives, linear approximation, and vectors. Taught by the amazing Professor Brenda.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Taylor Series</span><span class="topic-tag">Partial Derivatives</span>
+            </div>
+          </div>
+
         </div>
-        <button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year2A"
-        >
-    Year 2A
-</button>
-        <div class="container shadow-none year-container collapse" id="year2A">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-joomla icon"></i>
-                        <h3 class="name">ECE 240<br>Electronics Circuits 1</h3>
-                        <p class="text-left description">Advance topics of designing circuits. Op Amps, diodes, MOS, bipolar amplifier biasing, and transistors were covered. This was one of the hardest courses I have taken as our Professor Levine was adamant to fail his class by giving us exam questions that were unbearably difficult to complete in a short period of time.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 250<br>Algorithms and Data Structures<br></h3>
-                        <p class="text-left description">An amazing course that covers the essentials of data structures and algorithms. Prof Ladan covered topics of time complexity, sorting, searching, and dynamic problem solving.&nbsp;</p>
-                        <p class="text-left description">- Hashing<br>- Search Tree's, Balanced BST's, B-Trees<br>- Heaps, Priority Queues<br>- Graphs<br>- NP- Completeness<br>- Dijkstra and Bellman Ford</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-microchip icon"></i>
-                        <h3 class="name">ECE 222<br>Digital Computers<br></h3>
-                        <p class="text-left description">Professor Gebotys strikes again. One of the best courses taught at this school. This course focuses on memory units, I/O operations, Assembly language labs using VDHL, and arithmetic logic units. We programmed state machines such as a relay unit.&nbsp;</p>
-                    </div>
-                    <div class="box"><i class="fa fa-lightbulb-o icon"></i>
-                        <h3 class="name">ECE 290<br>Engineering Profession, Ethics, Law<br></h3>
-                        <p class="text-left description">An introduction to the engineering profession, standards of safety, code of conducts, legal practices, tort , intellectual property&nbsp; (patents, copyrights, industrial designs), dispute resolution, , Labour Relations and Employment Law, Environmental Law. I enjoyed this course so much that I have considered to enter patent law after graduation.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">ECE 204<br>Numerical Methods</h3>
-                        <p class="text-left description">This course focuses on various computational methods. Number systems, errors and error propagation. Roots of nonlinear equations. Interpolation and numerical integration. Prof Harder helps outside the class and is amazing. I personally did not enjoy the course because it had boring content.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">ECE 205<br>Advanced Calculus</h3>
-                        <p class="text-left description">Analysis on ODE's, the harmonic oscillator, the Laplace transform , Fourier series, and PDE's. Fun course hard assignments.</p>
-                    </div>
-                </div>
-            </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year2B"
-        >
-    Year 2B
-</button>
-        <div class="container shadow-none year-container collapse" id="year2B">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-wave-square icon"></i>
-                        <h3 class="name">ECE 207<br>Signals &amp; Systems</h3>
-                        <p class="text-left description">Discrete, continuous and periodic signals, time- and frequency-domain analysis of continuous- and discrete-time linear systems, periodic signals and Fourier series, non-periodic signals and Fourier transforms. A very useless course for a computer engineer as most of the concepts covered are usually solved by a programmed computer.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 252<br>Systems Programming &amp; Concurrency<br></h3>
-                        <p class="text-left description">Using C, this course focuses on programming using processes and threads, utilizing system calls, following concurrency using a semaphore or mutex, user level memory management, deadlock detection, and managing file systems.&nbsp;&nbsp;</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-microchip icon"></i>
-                        <h3 class="name">ECE 224<br>Embedded Microprocessor Systems<br></h3>
-                        <p class="text-left description">Professor BillBishop is amazing. This course covers bus systems of computer hardware, memory systems, peripherals, (parallel, serial, analog) interfaces,&nbsp; data transfers, synchronization with timing diagrams,&nbsp; and error detection/correction.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-lightbulb-o icon"></i>
-                        <h3 class="name">ECE 298<br>Instrument &amp; Prototyping Lab<br></h3>
-                        <p class="text-left description">Wow. Amazing. Fantastic. Not enough words to describe this course. We were privileged enough to be able to create our own embedded systems design project.&nbsp; We created an&nbsp;<a href="https://github.com/n27jain/X-Y-Controller">X-Y Controller</a>.<br>We covered everything from designing and planning a PCB board using Diptrace, getting our circuit board manufactured,&nbsp; and soldering in various components such as diodes and transistors.&nbsp; Then we used C to program our board to spin 2 different DC motors.&nbsp;</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-dice icon"></i>
-                        <h3 class="name">ECE 208<br>Discrete Math &amp; Logic</h3>
-                        <p class="text-left description">Continuation of ECE 108 from 1B. This course focused on Boolean logic, proof systems, soundness, completeness, deterministic and non-deterministic finite automata, regular expressions, and NP completeness. It was oddly satisfying to solve problems in this course.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-book icon"></i>
-                        <h3 class="name">ENGL 109<br>Intro To Academic Writing</h3>
-                        <p class="text-left description">Just a school requirement. This course consists of writing 4 essays throughout the term and doing some small assignments. I wrote a story about my journey to India.</p>
-                    </div>
-                </div>
-            </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year3A"
-        >
-    Year 3A
-</button>
-        <div class="container shadow-none year-container collapse" id="year3A">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-wave-square icon"></i>
-                        <h3 class="name">ECE 380<br>Analog Control Systems</h3>
-                        <p class="text-left description">Discrete, continuous and periodic signals, time- and frequency-domain analysis of continuous- and discrete-time linear systems, periodic signals and Fourier series, non-periodic signals and Fourier transforms.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 351<br>Compilers<br></h3>
-                        <p class="text-left description">Using C, this course focuses on programming using processes and threads, utilizing system calls, following concurrency using a semaphore or mutex, user level memory management, deadlock detection, and managing file systems.&nbsp;&nbsp;</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-microchip icon"></i>
-                        <h3 class="name">ECE 327<br>Digital Hardware Systems<br></h3>
-                        <p class="text-left description">Professor BillBishop is amazing. This course covers bus systems of computer hardware, memory systems, peripherals, (parallel, serial, analog) interfaces,&nbsp; data transfers, synchronization with timing diagrams,&nbsp; and error detection/correction.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-dollar icon"></i>
-                        <h3 class="name">ECON 140W<br>Intro to Macroeconomics (WLU)<br></h3>
-                        <p class="text-left description">I have always had a passion in learning about finance. I already a took microeconomics course in my free time so I wanted to learn about macroeconomics. This was a really good course. It covered topics like interest rates, health of an economy, and how banks work. This is a great elective to become more financially aware.&nbsp;</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-dice icon"></i>
-                        <h3 class="name">ECE 306<br>Probability Theory &amp;Statistics</h3>
-                        <p class="text-left description">Continuation of ECE 108 from 1B. This course focused on Boolean logic, proof systems, soundness, completeness, deterministic and non-deterministic finite automata, regular expressions, and NP completeness. It was oddly satisfying to solve&nbsp;</p>
-                    </div>
-                    <div class="box"><i class="fas fa-space-shuttle icon"></i>
-                        <h3 class="name">SCI 238<br>Introductory Astronomy</h3>
-                        <p class="text-left description">When I was a kid I wanted to become an Astronaut. I loved the idea of space travel, discovering new life,&nbsp; finding mysterious planets, and understanding our origins as humans. This course teaches engineers how to measure far away distances, how the universe came to existence, the various components of the solar system, how we are searching for exo-planets, and the possibility of traveling rapidly using wormholes.&nbsp; &nbsp;</p>
-                    </div>
-                </div>
-            </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year3B"
-        >
-    Year 3B
-</button>
-        <div class="container shadow-none year-container collapse" id="year3B">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-car-side icon"></i>
-                        <h3 class="name">ECE 495<br>Autonomous Vehicles</h3>
-                        <p class="text-left description">This was a very easy course that taught very difficult concepts. It was poorly organized but the professor and the TA's were amazing. This course covers image recognition with edge detection and filters, logistic regression for optimal estimation, Neural Networks for modeling, image classes, Object detection, system modeling, probabilistic modeling, vehicle modeling, and trajectory modeling.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-atom icon">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="12" x2="12" y2="12.01"></line>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(45 12 12)"></path>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(-45 12 12)"></path>
-                        </svg>
-                        <h3 class="name">ECE 405<br>Quantum Mechanics<br></h3>
-                        <p class="text-left description">A very difficult course that covers Quantum measurements, Matrix Notation, Expectation Values, Uncertainty, Wave mechanics, and Time Dilation. The last unit was rushed but covered interesting applications of quantum mechanics in cryptography and computation. We also created a presentation on Ultra precise clocks and their uses for GPS systems.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 350<br>Real-Time Operating Systems</h3>
-                        <p class="text-left description">This was one of the hardest course I have ever taken, primarily because the time required to do the labs is immense. We developed the components of a Kernel for an Altera processor. <br>We covered all topics of the OS : Threads, Memory Management, Uni and Multi-processor scheduling, Real-Time Systems, Address translation, caching, and File Systems.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-american-sign-language-interpreting icon"></i>
-                        <h3 class="name">ECE 390<br>Engineering Design, Economics, and Impact</h3>
-                        <p class="text-left description">This course teaches economical analysis, environmental impact,&nbsp; and social impact of engineering projects. The course was relatively easy but taught me a ton about finance and project planning. We also did a final project that consisted of a video presentation and official report for the Sarnia Photovoltaic Power Plant.&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year4A"
-        >
-    Year 4A
-</button>
-        <div class="container shadow-none year-container collapse" id="year4A">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-subscript icon"></i>
-                        <h3 class="name">MSCI 331<br>Introduction to Optimization</h3>
-                        <p class="text-left description">This was very important course that taught the concept of optimization for non-linear problems. Final project was a tough one where we find a real world optimization problem and then present our solution.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-atom icon">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="12" x2="12" y2="12.01"></line>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(45 12 12)"></path>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(-45 12 12)"></path>
-                        </svg>
-                        <h3 class="name">GENE 403<br>Interdisciplinary Design Project 1<br></h3>
-                        <p class="text-left description">The Final Year design project. We designed WeldView, the AR solution for welding precision.</p>
-                    </div>
-                    <div class="box"><i class="fa fa-code icon"></i>
-                        <h3 class="name">ECE 457A<br>Cooperative and Adaptive Algorithms</h3>
-                        <p class="text-left description">An incredibly interesting course that covers Game Theory, basics of algorithmic problem solving, and wraps up with neural networks.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-american-sign-language-interpreting icon"></i>
-                        <h3 class="name">MUSIC 140<br>Popular Music and Culture</h3>
-                        <p class="text-left description">Fantastic and entertaining. The Professor really knows his stuff. 4 quizzes on music from 1940's to 1980's. Incredible how the history shaped the developtment and influence of music.&nbsp;</p>
-                    </div>
-                </div>
-            </div>
-        </div><button class="btn btn-primary collapse_year_button"
-        id="collapse_button" 
-        type="button" 
-        style="font-size: 32px;"
-        data-toggle="collapse"
-        data-target="#year4B"
-        >
-    Year 4B
-</button>
+      </div>
 
+      <!-- ── YEAR 2A ── -->
+      <div class="year-group" data-year="2a">
+        <h2 class="year-heading">Year 2A</h2>
+        <div class="course-grid">
 
-        <div class="container shadow-none year-container collapse" id="year4B">
-            <div class="intro"></div>
-            <div class="row justify-content-center features">
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-american-sign-language-interpreting icon"></i>
-                        <h3 class="name">ENGL 108A<br>The Superhero</h3>
-                        <p class="text-left description"> A very rewarding English course that covers the history of DC comics, their origins, and cultural influence. There were 10 quizzes, and 2 essay assignments.  </p>
-                    </div>
-
-                    <div class="box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="fa fa-subscript icon">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="12" x2="12" y2="12.01"></line>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(45 12 12)"></path>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(-45 12 12)"></path>
-                        </svg>
-                        <h3 class="name">GENE 404<br>Interdisciplinary Design Project 2</h3>
-                        <p class="text-left description">Continuing from the previous course, we finally presented our design and shared our findings with out mentor.&nbsp;</p>
-                    </div>
-
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fas fa-american-sign-language-interpreting icon"></i>
-                        <h3 class="name">CLAS 104<br>Classical Mythology</h3>
-                        <p class="text-left description">This was a facinating course that covered the various greek mythology stories starting with the world origins. Well organized and the instructor was passionate and cute. </p>
-                    </div>
-                    <div class="box">
-                        <i class="fa fa-code icon "></i>
-                        <h3 class="name">ECE 452<br>Software Design and Architectures<br></h3>
-                        <p class="text-left description">A rewarding in depth course that covered the high level design of app developtment and services. Many quizes and one final group project where we made a meal planner android app.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="fa fa-subscript icon">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <line x1="12" y1="12" x2="12" y2="12.01"></line>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(45 12 12)"></path>
-                            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(-45 12 12)"></path>
-                        </svg>
-                        <h3 class="name">ECE 499<br>Engineering Project</h3>
-                        <p class="text-left description">This was a research project I took up with my Adaptive Programing professor, Otman Basir. Using the Ant Colony Method and Genetic Algorithms, I aimed to develop the correct speed cars should travel to reduce fuel consumption and optimize the travel time for all participants of the traffic road system. </p>
-                    </div>
-                    
-                </div>
+          <div class="course-card">
+            <p class="course-code">ECE 240</p>
+            <h3 class="course-name">Electronics Circuits 1</h3>
+            <p class="course-desc">Advanced circuits: op-amps, diodes, MOS, bipolar amplifier biasing, and transistors. One of the hardest courses taken — brutal exam questions under tight time pressure.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Transistors</span><span class="topic-tag">Diodes</span><span class="topic-tag">MOS</span>
             </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 250</p>
+            <h3 class="course-name">Algorithms &amp; Data Structures</h3>
+            <p class="course-desc">Essential course covering time complexity, sorting, searching, and dynamic problem solving. Hashing, search trees, heaps, graphs, NP-completeness, Dijkstra, Bellman-Ford.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Graphs</span><span class="topic-tag">Dijkstra</span><span class="topic-tag">NP-Completeness</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 222</p>
+            <h3 class="course-name">Digital Computers</h3>
+            <p class="course-desc">One of the best courses at the school (Prof. Gebotys). Memory units, I/O, Assembly/VHDL labs, and ALUs. Programmed real state machines.</p>
+            <div class="course-topics">
+              <span class="topic-tag">VHDL</span><span class="topic-tag">ALU</span><span class="topic-tag">State Machines</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 290</p>
+            <h3 class="course-name">Engineering Profession, Ethics &amp; Law</h3>
+            <p class="course-desc">Intellectual property (patents, copyrights), tort law, labour relations, environmental law. This course is what inspired me to pursue patent law after graduation.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Patents</span><span class="topic-tag">IP Law</span><span class="topic-tag">Ethics</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 204</p>
+            <h3 class="course-name">Numerical Methods</h3>
+            <p class="course-desc">Computational methods, error propagation, root-finding, interpolation, and numerical integration. Prof. Harder is excellent; the content itself is dry.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Root-Finding</span><span class="topic-tag">Interpolation</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 205</p>
+            <h3 class="course-name">Advanced Calculus</h3>
+            <p class="course-desc">ODEs, harmonic oscillator, Laplace transform, Fourier series, and PDEs. Fun course, tough assignments.</p>
+            <div class="course-topics">
+              <span class="topic-tag">ODEs</span><span class="topic-tag">Laplace</span><span class="topic-tag">Fourier</span>
+            </div>
+          </div>
+
         </div>
+      </div>
+
+      <!-- ── YEAR 2B ── -->
+      <div class="year-group" data-year="2b">
+        <h2 class="year-heading">Year 2B</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ECE 207</p>
+            <h3 class="course-name">Signals &amp; Systems</h3>
+            <p class="course-desc">Discrete/continuous signals, Fourier series and transforms, time/frequency-domain analysis. Largely theoretical for a computer engineer, but foundational.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Fourier</span><span class="topic-tag">Signal Analysis</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 252</p>
+            <h3 class="course-name">Systems Programming &amp; Concurrency</h3>
+            <p class="course-desc">C programming, processes, threads, system calls, semaphores, mutexes, deadlock detection, and file system management.</p>
+            <div class="course-topics">
+              <span class="topic-tag">C</span><span class="topic-tag">Threads</span><span class="topic-tag">Concurrency</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 224</p>
+            <h3 class="course-name">Embedded Microprocessor Systems</h3>
+            <p class="course-desc">Prof. BillBishop is amazing. Bus systems, memory, peripheral interfaces, data transfers, synchronisation, and error detection/correction.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Embedded</span><span class="topic-tag">Bus Systems</span><span class="topic-tag">Memory</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 298</p>
+            <h3 class="course-name">Instrument &amp; Prototyping Lab</h3>
+            <p class="course-desc">Designed and built an X-Y Controller end-to-end: PCB design in Diptrace, manufacturing, soldering, and C programming to spin DC motors. Outstanding hands-on experience.</p>
+            <div class="course-topics">
+              <span class="topic-tag">PCB Design</span><span class="topic-tag">Soldering</span><span class="topic-tag">C</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 208</p>
+            <h3 class="course-name">Discrete Math &amp; Logic</h3>
+            <p class="course-desc">Continuation of ECE 108 — automata theory, regular expressions, NP completeness, and proof systems. Oddly satisfying problem-solving.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Automata</span><span class="topic-tag">Regex</span><span class="topic-tag">NP</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ENGL 109</p>
+            <h3 class="course-name">Intro to Academic Writing</h3>
+            <p class="course-desc">Four essays over the term plus small assignments. I wrote about my journey to India — a surprisingly reflective exercise.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Writing</span><span class="topic-tag">Essays</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── YEAR 3A ── -->
+      <div class="year-group" data-year="3a">
+        <h2 class="year-heading">Year 3A</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ECE 380</p>
+            <h3 class="course-name">Analog Control Systems</h3>
+            <p class="course-desc">Continuous and periodic signals, frequency-domain analysis, Fourier series and transforms for control system design.</p>
+            <div class="course-topics"><span class="topic-tag">Control Systems</span><span class="topic-tag">Fourier</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 351</p>
+            <h3 class="course-name">Compilers</h3>
+            <p class="course-desc">Compiler design using C: lexing, parsing, semantic analysis, code generation, and optimisation.</p>
+            <div class="course-topics"><span class="topic-tag">C</span><span class="topic-tag">Parsing</span><span class="topic-tag">Code Gen</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 327</p>
+            <h3 class="course-name">Digital Hardware Systems</h3>
+            <p class="course-desc">Hardware memory systems, peripherals, interfaces, and synchronisation with timing diagrams.</p>
+            <div class="course-topics"><span class="topic-tag">Hardware</span><span class="topic-tag">FPGA</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECON 140W</p>
+            <h3 class="course-name">Intro to Macroeconomics</h3>
+            <p class="course-desc">Interest rates, economic health indicators, and how banks work. A great elective to become more financially literate — something I was already passionate about.</p>
+            <div class="course-topics"><span class="topic-tag">Finance</span><span class="topic-tag">Banking</span><span class="topic-tag">Economics</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 306</p>
+            <h3 class="course-name">Probability Theory &amp; Statistics</h3>
+            <p class="course-desc">Probabilistic reasoning, distributions, and statistical inference — foundational for machine learning and data analysis work.</p>
+            <div class="course-topics"><span class="topic-tag">Probability</span><span class="topic-tag">Statistics</span><span class="topic-tag">ML</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">SCI 238</p>
+            <h3 class="course-name">Introductory Astronomy</h3>
+            <p class="course-desc">How to measure stellar distances, the origins of the universe, the solar system, exoplanet search methods, and the theoretical possibility of wormhole travel.</p>
+            <div class="course-topics"><span class="topic-tag">Cosmology</span><span class="topic-tag">Exoplanets</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── YEAR 3B ── -->
+      <div class="year-group" data-year="3b">
+        <h2 class="year-heading">Year 3B</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ECE 495</p>
+            <h3 class="course-name">Autonomous Vehicles</h3>
+            <p class="course-desc">Image recognition, edge detection, logistic regression, neural networks, object detection, probabilistic modelling, and trajectory planning. Poorly organised but great content and TAs.</p>
+            <div class="course-topics"><span class="topic-tag">Computer Vision</span><span class="topic-tag">Neural Nets</span><span class="topic-tag">SLAM</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 405</p>
+            <h3 class="course-name">Quantum Mechanics</h3>
+            <p class="course-desc">Quantum measurements, matrix notation, wave mechanics, time dilation, and applications in cryptography and computation. Final presentation on ultra-precise clocks for GPS.</p>
+            <div class="course-topics"><span class="topic-tag">Quantum</span><span class="topic-tag">Cryptography</span><span class="topic-tag">GPS</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 350</p>
+            <h3 class="course-name">Real-Time Operating Systems</h3>
+            <p class="course-desc">One of the hardest courses taken — developed Kernel components for an Altera processor. Threads, memory management, scheduling, caching, and file systems.</p>
+            <div class="course-topics"><span class="topic-tag">Kernel</span><span class="topic-tag">Scheduling</span><span class="topic-tag">Memory</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 390</p>
+            <h3 class="course-name">Engineering Design, Economics &amp; Impact</h3>
+            <p class="course-desc">Economic analysis, environmental and social impact of engineering projects. Final project: video presentation and report on the Sarnia Photovoltaic Power Plant.</p>
+            <div class="course-topics"><span class="topic-tag">Finance</span><span class="topic-tag">Sustainability</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── YEAR 4A ── -->
+      <div class="year-group" data-year="4a">
+        <h2 class="year-heading">Year 4A</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">MSCI 331</p>
+            <h3 class="course-name">Introduction to Optimization</h3>
+            <p class="course-desc">Optimization for non-linear problems. Final project: identify a real-world optimization problem and present a solution.</p>
+            <div class="course-topics"><span class="topic-tag">Optimization</span><span class="topic-tag">Non-Linear</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">GENE 403</p>
+            <h3 class="course-name">Interdisciplinary Design Project 1</h3>
+            <p class="course-desc">Final Year design project. Designed <strong>WeldView</strong> — an AR solution for welding precision improvement.</p>
+            <div class="course-topics"><span class="topic-tag">AR</span><span class="topic-tag">Design</span><span class="topic-tag">Capstone</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 457A</p>
+            <h3 class="course-name">Cooperative &amp; Adaptive Algorithms</h3>
+            <p class="course-desc">Game theory, algorithmic problem solving, and neural networks. An incredibly interesting course with real-world applications.</p>
+            <div class="course-topics"><span class="topic-tag">Game Theory</span><span class="topic-tag">Genetic Algorithms</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">MUSIC 140</p>
+            <h3 class="course-name">Popular Music and Culture</h3>
+            <p class="course-desc">Four quizzes covering music history from the 1940s to 1980s. Incredible how history shaped the development and influence of music. The professor really knows his stuff.</p>
+            <div class="course-topics"><span class="topic-tag">Music History</span><span class="topic-tag">Culture</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── YEAR 4B ── -->
+      <div class="year-group" data-year="4b">
+        <h2 class="year-heading">Year 4B</h2>
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">ENGL 108A</p>
+            <h3 class="course-name">The Superhero</h3>
+            <p class="course-desc">History of DC comics, their origins and cultural influence. Ten quizzes and two essay assignments. A rewarding and surprisingly deep English course.</p>
+            <div class="course-topics"><span class="topic-tag">Pop Culture</span><span class="topic-tag">Essays</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">GENE 404</p>
+            <h3 class="course-name">Interdisciplinary Design Project 2</h3>
+            <p class="course-desc">Concluded the WeldView AR project — presented final design and shared findings with the faculty mentor.</p>
+            <div class="course-topics"><span class="topic-tag">AR</span><span class="topic-tag">Capstone</span><span class="topic-tag">Presentation</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">CLAS 104</p>
+            <h3 class="course-name">Classical Mythology</h3>
+            <p class="course-desc">Greek mythology from world origins through the major gods and heroes. Well-organised and taught by a passionate instructor.</p>
+            <div class="course-topics"><span class="topic-tag">Greek Myths</span><span class="topic-tag">History</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 452</p>
+            <h3 class="course-name">Software Design &amp; Architectures</h3>
+            <p class="course-desc">High-level app architecture and services design. Multiple quizzes and a group project building a meal-planner Android app.</p>
+            <div class="course-topics"><span class="topic-tag">Architecture</span><span class="topic-tag">Android</span><span class="topic-tag">Design Patterns</span></div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">ECE 499</p>
+            <h3 class="course-name">Engineering Project (Thesis)</h3>
+            <p class="course-desc">Research project with Prof. Otman Basir. Used Ant Colony Method and Genetic Algorithms to find optimal vehicle speeds — minimising fuel consumption and travel time for all road participants.</p>
+            <div class="course-topics"><span class="topic-tag">Genetic Algorithms</span><span class="topic-tag">Ant Colony</span><span class="topic-tag">Research</span></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+           LAW SCHOOL — Windsor Law
+      ════════════════════════════════════════════════════════ -->
+      <div class="year-group law-header" data-year="law-1l law-2l-fall law-2l-winter law-3l-fall law-3l-winter" style="margin: 4rem 0 2rem; padding-top: 3rem; border-top: 2px solid var(--border);">
+        <p class="section-label">Windsor Law</p>
+        <h2 class="section-title" style="margin-bottom:0;">Law School Courses</h2>
+      </div>
+
+      <!-- ── LAW 1L (Fall & Winter) ── -->
+      <div class="year-group" data-year="law-1l">
+        <h2 class="year-heading">1L — Fall &amp; Winter</h2>
+
+        <!-- Reflections banner -->
+        <div style="background:var(--accent-pale); border:1px solid var(--border); border-left: 3px solid var(--accent); border-radius:var(--radius); padding:1.25rem 1.5rem; margin-bottom:1.75rem;">
+          <p style="font-size:.75rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem;">Overall Reflections — Grading &amp; Student Life</p>
+          <p style="font-size:.9rem; color:var(--ink-light); margin-bottom:.75rem;">Earning a high GPA at Windsor Law is challenging because most classes are strictly curved to a 72–76% average. Poorly written or highly debatable multiple-choice questions often function more as a mechanism to spread out grades than to truly test knowledge. Many professors also seem reluctant to award perfect scores on written work, even for excellent answers, before the curve is applied.</p>
+          <p style="font-size:.9rem; color:var(--ink-light);">Beyond academics, making good friends early creates a healthier, more supportive study environment. Law school burnout is very real but becomes manageable if you make a conscious effort to enjoy the experience. Talk to your seniors — they understand exactly what you're going through. At Windsor Law, I found most students were genuinely helpful and supportive, which made the program far more enjoyable.</p>
+        </div>
+
+        <div class="course-grid">
+
+          <div class="course-card">
+            <p class="course-code">Constitutional Law</p>
+            <h3 class="course-name">Constitutional Law</h3>
+            <p class="course-desc">Covered the Canadian Constitution, division of powers, and landmark constitutional cases. Professor Richard Moon (now retired) taught the material in a story-like manner — like sitting with a wise grandpa sharing fascinating stories. Easily one of the most engaging teaching styles I experienced in law school.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Canadian Constitution</span>
+              <span class="topic-tag">Division of Powers</span>
+              <span class="topic-tag">Landmark Cases</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Criminal Law</p>
+            <h3 class="course-name">Criminal Law</h3>
+            <p class="course-desc">Examined foundational criminal cases — assault, murder, prostitution-related offences — with a strong emphasis on how bias shapes guilt determinations and how the system pursues justice. Meaningful discussion on the treatment of Black, Indigenous, and South Asian accused. Taught by Professor David Tanovich, widely regarded as one of the university's top professors. Easily the best course I took across all three years — surprising, given that criminal law wasn't an area I was particularly interested in beforehand.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Criminal Procedure</span>
+              <span class="topic-tag">Bias &amp; Justice</span>
+              <span class="topic-tag">Race &amp; Law</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Property Law</p>
+            <h3 class="course-name">Property Law</h3>
+            <p class="course-desc">Began with first principles — labour theory, the settler expansionist mindset — then traced property law's evolution in Canada, with significant focus on Crown title versus Aboriginal rights and adverse possession. A clear lesson from this course: law school often means learning to apply the law the way your professor sees fit, rather than purely exercising independent critical thinking.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Property Rights</span>
+              <span class="topic-tag">Aboriginal Title</span>
+              <span class="topic-tag">Adverse Possession</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Contract Law</p>
+            <h3 class="course-name">Contract Law</h3>
+            <p class="course-desc">Covered the key elements of a valid contract with plenty of case law illustrating arguments from both sides. Professor Waters was pleasant but frequently read directly from a prepared script without elaborating. Practice problems were too basic to prepare for his multiple-choice exams, which were often surprisingly subjective.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Formation</span>
+              <span class="topic-tag">Consideration</span>
+              <span class="topic-tag">Breach &amp; Remedies</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Legal Research</p>
+            <h3 class="course-name">Legal Research</h3>
+            <p class="course-desc">Practical course covering essential research tools including Westlaw, CanLII, and Lexis+. Moot practice and factum drafting were especially useful. One frustration: instead of being shown a model 100% factum, we were given an 80% example with marked mistakes and told to figure out excellence on our own — inadequate for a foundational course.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Westlaw</span>
+              <span class="topic-tag">CanLII</span>
+              <span class="topic-tag">Factum Drafting</span>
+              <span class="topic-tag">Moots</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Indigenous Legal Orders</p>
+            <h3 class="course-name">Indigenous Legal Orders</h3>
+            <p class="course-desc">Taught by Professor Beverly Jacobs from a powerful first-person perspective. Covered the harsh actions taken by the British Empire to eliminate or assimilate Indigenous peoples, the formation and violation of treaties, and why Indigenous legal values have proven so difficult to incorporate into the Canadian legal system.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Treaties</span>
+              <span class="topic-tag">Colonialism</span>
+              <span class="topic-tag">Reconciliation</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <p class="course-code">Access to Justice</p>
+            <h3 class="course-name">Access to Justice</h3>
+            <p class="course-desc">Taught by Professor Overholt, this course examined barriers that prevent marginalized communities from accessing justice — whether due to systemic failures or lack of adequate representation. I particularly enjoyed the section on AI and the Law. For my paper, I took a more optimistic stance on AI's potential in the legal field, contrasting with the more pessimistic views of many classmates.</p>
+            <div class="course-topics">
+              <span class="topic-tag">Marginalized Communities</span>
+              <span class="topic-tag">Legal Aid</span>
+              <span class="topic-tag">AI &amp; Law</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── LAW 2L FALL ── -->
+      <div class="year-group" data-year="law-2l-fall">
+        <h2 class="year-heading">2L — Fall</h2>
+        <div class="course-grid">
+          <div class="course-card" style="border-style:dashed; opacity:.6;">
+            <p class="course-code">Coming Soon</p>
+            <h3 class="course-name">2L Fall Courses</h3>
+            <p class="course-desc">Add your 2L Fall courses here by duplicating a course card block above.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LAW 2L WINTER ── -->
+      <div class="year-group" data-year="law-2l-winter">
+        <h2 class="year-heading">2L — Winter</h2>
+        <div class="course-grid">
+          <div class="course-card" style="border-style:dashed; opacity:.6;">
+            <p class="course-code">Coming Soon</p>
+            <h3 class="course-name">2L Winter Courses</h3>
+            <p class="course-desc">Add your 2L Winter courses here by duplicating a course card block above.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LAW 3L FALL ── -->
+      <div class="year-group" data-year="law-3l-fall">
+        <h2 class="year-heading">3L — Fall</h2>
+        <div class="course-grid">
+          <div class="course-card" style="border-style:dashed; opacity:.6;">
+            <p class="course-code">Coming Soon</p>
+            <h3 class="course-name">3L Fall Courses</h3>
+            <p class="course-desc">Add your 3L Fall courses here by duplicating a course card block above.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LAW 3L WINTER ── -->
+      <div class="year-group" data-year="law-3l-winter">
+        <h2 class="year-heading">3L — Winter</h2>
+        <div class="course-grid">
+          <div class="course-card" style="border-style:dashed; opacity:.6;">
+            <p class="course-code">Coming Soon</p>
+            <h3 class="course-name">3L Winter Courses</h3>
+            <p class="course-desc">Add your 3L Winter courses here by duplicating a course card block above.</p>
+          </div>
+        </div>
+      </div>
 
     </div>
-    <footer id="custom-page-footer" class="page-footer" style="padding-top: 0px;/*padding-bottom: 10px;*/height: 255px;">
-        <div class="container">
-            <div class="links"></div>
-            <div class="text-center social-icons" id="custom-social-icons">
-                <h2 class="text-center" style="font-size: 50px;color: white;">Find Me On</h2><a id="custom-link-icon" href="https://www.linkedin.com/in/namanjain1999/"><i class="icon ion-social-linkedin" id="footer-custom-icon"></i></a><a id="custom-link-icon" href="https://github.com/n27jain"><i class="icon ion-social-github" id="footer-custom-icon"></i></a><a id="custom-link-icon" href="https://www.youtube.com/channel/UCMwZ5Au6yeCouml0qgCPpCQ"><i class="icon ion-social-youtube" id="footer-custom-icon"></i></a>
-            </div>
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/smart-forms.min.js"></script>
-    <script src="assets/js/Animated-Type-Heading.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
-    <script src="assets/js/theme.js"></script>
-</body>
+  </section>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Naman Jain</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html">Home</a>
+        <a href="contact-me.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterYear(year, btn) {
+      document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.year-group').forEach(g => {
+        if (year === 'all') {
+          g.classList.remove('hidden');
+        } else {
+          const years = (g.dataset.year || '').split(' ');
+          // For the law header, show it if any law tab is selected
+          if (g.classList.contains('law-header')) {
+            g.classList.toggle('hidden', !years.includes(year));
+          } else {
+            g.classList.toggle('hidden', !years.includes(year));
+          }
+        }
+      });
+    }
+  </script>
+
+</body>
 </html>

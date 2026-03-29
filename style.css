@@ -1,0 +1,134 @@
+/* ============================================================
+   DESIGN TOKENS — Edit these to restyle the entire site
+============================================================ */
+:root {
+  --bg:          #F7F4EF;
+  --ink:         #1A1814;
+  --ink-light:   #6B6560;
+  --accent:      #C8501A;
+  --accent-pale: #F2E8E2;
+  --border:      #DDD8D0;
+  --white:       #FFFFFF;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  --radius: 4px;
+  --max-w: 940px;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { display: block; width: 100%; object-fit: cover; }
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+section { padding: 5rem 0; }
+.divider { border: none; border-top: 1px solid var(--border); }
+
+/* ============================================================
+   NAV
+============================================================ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,244,239,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px; max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem;
+}
+.nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .83rem; font-weight: 500; color: var(--ink-light); letter-spacing:.04em; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); text-decoration: none; }
+
+/* ============================================================
+   PAGE HEADER (reused across pages)
+============================================================ */
+.page-header { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--border); }
+.page-header .eyebrow {
+  display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem;
+}
+.page-header .eyebrow-line { width: 36px; height: 1px; background: var(--accent); }
+.page-header .eyebrow span {
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--accent);
+}
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+.page-header p { color: var(--ink-light); margin-top: .75rem; max-width: 500px; }
+
+/* ============================================================
+   SECTION LABEL / TITLE
+============================================================ */
+.section-label {
+  font-size: .7rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: .75rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  line-height: 1.1; margin-bottom: 2rem;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 1.5rem 0;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem;
+  font-size: .8rem; color: rgba(255,255,255,.3);
+}
+.footer-inner a { color: rgba(255,255,255,.5); }
+.footer-inner a:hover { color: var(--accent); text-decoration: none; }
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  display: inline-block; padding: .7rem 1.6rem;
+  font-size: .83rem; font-weight: 500; letter-spacing: .05em;
+  border-radius: 2px; transition: background .2s, color .2s, border-color .2s;
+  border: 1px solid transparent; cursor: pointer;
+}
+.btn-primary { background: var(--ink); color: var(--white); }
+.btn-primary:hover { background: var(--accent); color: var(--white); text-decoration: none; }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 680px) {
+  .nav-links { display: none; }
+  section { padding: 3.5rem 0; }
+}
